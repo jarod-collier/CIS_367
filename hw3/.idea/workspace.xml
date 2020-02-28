@@ -119,7 +119,7 @@
     </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/cs367-mvp-transformation" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -223,12 +223,12 @@
       <workItem from="1552459192899" duration="609000" />
       <workItem from="1553981615899" duration="764000" />
       <workItem from="1554081340316" duration="348000" />
-      <workItem from="1582895562612" duration="2258000" />
+      <workItem from="1582895562612" duration="2713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27899000" />
+    <option name="totallyTimeSpent" value="28354000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
