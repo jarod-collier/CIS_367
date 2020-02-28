@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <title>My first three.js app</title>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+</head>
+<body>
+<script src="./three.js"></script>
+<script src="GLTFLoader.js"></script>
+<script src="TrackballControls.js"></script>
+<script>
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera( 35, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+    // document.body.style.backgroundColor = "red";
+
+    var tracker = new THREE.TrackballControls(camera);
+    tracker.rotateSpeed = 2.0;
+    // Allow zoom and pan
+    tracker.noZoom = false;
+    tracker.noPan = false;
+
+    // Lights
+    var light = new THREE.AmbientLight(0xffffff, .5);
+    scene.add(light);
+
+    var light2 = new THREE.PointLight(0xffffff, .5);
+    scene.add(light2);
+
+    // let geometry = new THREE.DodecahedronGeometry(30);
+    // let material = new THREE.MeshPhongMaterial({color: 0x14ae6e});
+    // let mesh = new THREE.Mesh(geometry, material);
+
+    // scene.add(mesh);
+
+
+    camera.position.y = -1;
+    camera.position.z = 7;
+
+    // Instantiate a loader
+    var loader = new THREE.GLTFLoader();
+    loader.load('scene.gltf', handle_load);
+
+    var car;
+
+    function handle_load(gltf) {
+        car = gltf.scene.children[0];
+        car.material = new THREE.MeshLambertMaterial();
+        car.position.z = -10;
+        car.rotateX(Math.PI / 4);
+        car.rotateZ(Math.PI / 4);
+        scene.add(car);
+    }
+
+
+    var animate = function () {
+        requestAnimationFrame( animate );
+        tracker.update();
+
+        car.rotation.z += .01;
+        car.position.z -= .01;
+        renderer.gammaOutput = true;
+        renderer.gammaFactor = 2.2;
+        renderer.render( scene, camera );
+    };
+
+    window.addEventListener('resize', resizeHandler);
+    resizeHandler();
+    animate();
+
+    function resizeHandler() {
+        camera.updateProjectionMatrix();
+        tracker.handleResize();
+    }
+</script>
+</body>
+</html>
